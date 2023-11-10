@@ -45,18 +45,18 @@ client.on('interactionCreate', async interaction => {
       const nombre = interaction.fields.getTextInputValue('username');
       const password = interaction.fields.getTextInputValue('password');
 
-      if (!nombre) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Debes ingresar el nombre de usuario de tu cuenta.").setColor("#7719fc")], ephemeral: true });
+      if (!nombre) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Debes ingresar el nombre de usuario de tu cuenta.").setColor(process.env.COLOR)], ephemeral: true });
 
       const obtenerUsuario = await client.db.getUser({ nombre: nombre });
-      if(obtenerUsuario.length <= 0) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Has ingresado información erronea.").setColor("#7719fc")], ephemeral: true })
+      if(obtenerUsuario.length <= 0) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Has ingresado información erronea.").setColor(process.env.COLOR)], ephemeral: true })
 
-      if(sha256(password + obtenerUsuario[0].salt).toString().toUpperCase() !== obtenerUsuario[0].clave)  return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Contraseña incorrecta.").setColor("#7719fc")], ephemeral: true })
+      if(sha256(password + obtenerUsuario[0].salt).toString().toUpperCase() !== obtenerUsuario[0].clave)  return interaction.reply({ embeds: [new EmbedBuilder().setDescription("Contraseña incorrecta.").setColor(process.env.COLOR)], ephemeral: true })
 
-      if (obtenerUsuario[0].discordId) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("El nombre de usuario ingresado ya esta Verificado!").setColor("#7719fc")], ephemeral: true });
+      if (obtenerUsuario[0].discordId) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("El nombre de usuario ingresado ya esta Verificado!").setColor(process.env.COLOR)], ephemeral: true });
  
       interaction.member.roles.add("1005217912468021360");
       await client.db.verificar({ nombre: nombre, discordId: interaction.user.id });
-      return await interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Se te ha verificado correctamente!`).setColor("#7719fc")], ephemeral: true });
+      return await interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Se te ha verificado correctamente!`).setColor(process.env.COLOR)], ephemeral: true });
     }
   }
   if (interaction.isButton()) {

@@ -28,7 +28,7 @@ module.exports = {
         const embed = new EmbedBuilder()
         if(titulo) embed.setTitle(titulo)
         if(descripcion) embed.setDescription(descripcion)
-        .setColor(`3a56d8`)
+        .setColor(process.env.COLOR)
         if(imagen) embed.setImage(imagen.url)
         if(thumbnail) embed.setThumbnail(thumbnail.url)
         if(footer) embed.setFooter({ text: footer })
