@@ -55,6 +55,7 @@ client.on('interactionCreate', async interaction => {
       if (obtenerUsuario[0].discordId) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("El nombre de usuario ingresado ya esta Verificado!").setColor(process.env.COLOR)], ephemeral: true });
  
       interaction.member.roles.add("1005217912468021360");
+      interaction.member.roles.remove("1005908276170465330");
       await client.db.verificar({ nombre: nombre, discordId: interaction.user.id });
       return await interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Se te ha verificado correctamente!`).setColor(process.env.COLOR)], ephemeral: true });
     }
