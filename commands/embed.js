@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
-const { EmbedBuilder, PermissionsBitField, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require("discord.js")
+const { EmbedBuilder, PermissionsBitField } = require("discord.js")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -34,13 +34,6 @@ module.exports = {
         if(footer) embed.setFooter({ text: footer })
 
         interaction.reply({ content: "Embed enviado correctamente!", ephemeral: true })
-
-        /*const openVerify = new ButtonBuilder()
-        .setStyle(ButtonStyle.Primary)
-        .setLabel('Verificate.')
-        .setEmoji('<a:check:1172607764544098415>')
-        .setCustomId(`Open_Verify`);
-        const open = new ActionRowBuilder().addComponents([openVerify]);*/
 
         client.guilds.cache.get(channel.guild.id).channels.cache.get(channel.id).send({ embeds: [embed] });
     }
