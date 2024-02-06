@@ -2,8 +2,8 @@
 
 module.exports = {
   token: process.env.TOKEN,
-  clientId: "client-id",//Id del bot
-  guildId: "guild-id",//id del servidor
+  clientId: process.env.CLIENT_ID,//Id del bot
+  guildId: process.env.GUILD_ID,//id del servidor
   mysql: {
     host: process.env.MysqlHost,
     user: process.env.MysqlUser,

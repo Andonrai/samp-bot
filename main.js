@@ -54,8 +54,8 @@ client.on('interactionCreate', async interaction => {
 
       if (obtenerUsuario[0].discordId) return interaction.reply({ embeds: [new EmbedBuilder().setDescription("El nombre de usuario ingresado ya esta Verificado!").setColor(process.env.COLOR)], ephemeral: true });
  
-      interaction.member.roles.add("");//id rol Verificado
-      interaction.member.roles.remove("");//id rol no verificado
+      interaction.member.roles.add(process.env.ROL_VERIFIED_ID);//id rol Verificado
+      interaction.member.roles.remove(process.env.ROL_NOT_VERIFIED_ID);//id rol no verificado
       await client.db.verificar({ nombre: nombre, discordId: interaction.user.id });
       return await interaction.reply({ embeds: [new EmbedBuilder().setDescription(`Se te ha verificado correctamente!`).setColor(process.env.COLOR)], ephemeral: true });
     }
